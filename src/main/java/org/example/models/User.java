@@ -11,7 +11,7 @@ import org.example.interfaces.IUser;
 import java.util.Objects;
 
 
-public class User implements IUser {
+public abstract class User implements IUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;

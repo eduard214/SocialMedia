@@ -1,1 +1,13 @@
-[]
+[ {
+  "title" : "Am facut proiectul",
+  "content" : "m am chinuit indelungat in facerea acestui proiect si mi place ce am obtinut in urma lui :)",
+  "author" : "edi",
+  "likes" : {
+    "usernames" : [ "edi" ],
+    "likes" : 0
+  },
+  "comments" : [ {
+    "commentText" : "edi",
+    "author" : "BUHUUHUUHUHU, cum adica ai facut proiectul? "
+  } ]
+} ]
