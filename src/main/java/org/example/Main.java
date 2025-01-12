@@ -4,6 +4,8 @@ import org.example.interfaces.IAuthenticationService;
 import org.example.interfaces.IFileHandler;
 import org.example.interfaces.IUserService;
 import org.example.models.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,8 +13,10 @@ import java.util.Scanner;
 
 // todo: setup a java server and connect to it to be more sophisticated :)
 
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
         boolean running = true;
 
         IUserService userService = new UserService();
