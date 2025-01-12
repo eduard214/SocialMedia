@@ -7,6 +7,6 @@ public interface IAuthenticationService {
 
     public void logoutStandardUser(UserService userService, String username);
     public void logoutAdminUser(UserService userService, String username);
-    public boolean authenticateAdminUser(UserService userService, String username, String password);
-    public boolean authenticateStandardUser(UserService userService, String username, String password);
+    public boolean authenticateAdminUser(IUserService userService, String username, String password);
+    public boolean authenticateStandardUser(IUserService userService, String username, String password);
 }

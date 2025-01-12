@@ -1,6 +1,7 @@
 package org.example.models;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class AdminUser extends User {
     private String adminRole;
@@ -47,6 +48,19 @@ public class AdminUser extends User {
     public void banUser(User user) {
         if (user != null) {
             System.out.println("Utilizatorul " + user.getUsername() + " a fost blocat de adminul " + this.getUsername());
+        }
+    }
+
+    public void unbanUser(User user) {
+        if (user != null) {
+            System.out.println("Utilizatorul " + user.getUsername() + " a fost deblocat de adminul " + this.getUsername());
+        }
+    }
+
+    public void deletePost(List<Post> post, Post postToDelete) {
+        if (post != null) {
+            post.remove(postToDelete);
+            System.out.println("Postarea a fost ștearsă de adminul " + this.getUsername());
         }
     }
 

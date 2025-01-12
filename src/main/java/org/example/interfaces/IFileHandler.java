@@ -1,8 +1,10 @@
 package org.example.interfaces;
 
 import org.example.models.AdminUser;
+import org.example.models.Post;
 import org.example.models.StandardUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IFileHandler {
@@ -16,4 +18,8 @@ public interface IFileHandler {
 
     // Load admin users from a file
     List<AdminUser> loadAdminUsers();
+
+    void savePosts(List<Post> posts);
+
+    List<Post> loadPosts();
 }

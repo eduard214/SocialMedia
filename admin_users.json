@@ -1,7 +1,7 @@
 [ {
   "id" : null,
   "username" : "admin",
-  "password" : "admin214",
+  "password" : "admin",
   "email" : "admin@admin.com",
   "role" : "ADMIN",
   "createdAt" : null,

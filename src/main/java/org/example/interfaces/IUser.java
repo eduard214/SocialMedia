@@ -1,5 +1,7 @@
 package org.example.interfaces;
 
+import org.example.models.Post;
+
 public interface IUser {
     String getUsername();
 
@@ -8,4 +10,6 @@ public interface IUser {
 
     // Returnează tipul utilizatorului (Admin sau Standard)
     String getRole();
+
+    Post createPost(String title, String content);
 }

@@ -1,16 +1,12 @@
 package org.example.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import org.example.interfaces.IUser;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 
 import java.util.Objects;
 
@@ -54,19 +50,21 @@ public class User implements IUser {
         return username;
     }
 
-    public void setPassword(String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        this.password = encoder.encode(password);
-    }
-
     @Override
     public String getPassword() {
         return (password);
     }
 
+    public void setPassword(String password) {
+        //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        this.password = encoder.encode(password);
+        this.password = password;
+    }
+
     public boolean checkPassword(String rawPassword) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return encoder.matches(rawPassword, this.password);
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        return encoder.matches(rawPassword, this.password);
+        return this.password.equals(rawPassword);
     }
 
     public String getEmail() {
@@ -100,6 +98,11 @@ public class User implements IUser {
 
     public void setUpdatedAt(JavaTimeModule updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public Post createPost(String title, String content) {
+        return new Post(title, content, this.username);
     }
 
     // Metode auxiliare

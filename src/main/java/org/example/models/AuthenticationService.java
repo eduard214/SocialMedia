@@ -10,7 +10,7 @@ public class AuthenticationService implements org.example.interfaces.IAuthentica
     public AuthenticationService() {};
     // Authenticate a standard user by username and password
     @Override
-    public boolean authenticateStandardUser(UserService userService, String username, String password) {
+    public boolean authenticateStandardUser(IUserService userService, String username, String password) {
         Optional<User> userOptional = userService.findUserByUsername(username);
         if (userOptional.isPresent()) {
             StandardUser user = (StandardUser) userOptional.get();
@@ -29,7 +29,7 @@ public class AuthenticationService implements org.example.interfaces.IAuthentica
 
     // Authenticate an admin user by username and password
     @Override
-    public boolean authenticateAdminUser(UserService userService, String username, String password) {
+    public boolean authenticateAdminUser(IUserService userService, String username, String password) {
         Optional<AdminUser> userOptional = userService.findAdminUserByUsername(username);
         if (userOptional.isPresent()) {
             AdminUser user = userOptional.get();

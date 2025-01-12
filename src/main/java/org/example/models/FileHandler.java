@@ -12,6 +12,7 @@ import java.util.List;
 public class FileHandler implements IFileHandler {
     private static final String STANDARD_USERS_FILE = "standard_users.json";
     private static final String ADMIN_USERS_FILE = "admin_users.json";
+    private static final String POSTS_FILE = "posts.json";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     // Save standard users to a JSON file
@@ -31,7 +32,11 @@ public class FileHandler implements IFileHandler {
         try {
             File file = new File(STANDARD_USERS_FILE);
             if (file.exists()) {
-                return objectMapper.readValue(file, new TypeReference<List<StandardUser>>() {});
+                if (file.length() == 0) {
+                    return new ArrayList<>();
+                }
+                return objectMapper.readValue(file, new TypeReference<List<StandardUser>>() {
+                });
             } else {
                 return new ArrayList<>();
             }
@@ -58,12 +63,45 @@ public class FileHandler implements IFileHandler {
         try {
             File file = new File(ADMIN_USERS_FILE);
             if (file.exists()) {
-                return objectMapper.readValue(file, new TypeReference<List<AdminUser>>() {});
+                if (file.length() == 0) {
+                    return new ArrayList<>();
+                }
+                return objectMapper.readValue(file, new TypeReference<List<AdminUser>>() {
+                });
             } else {
                 return new ArrayList<>();
             }
         } catch (IOException e) {
             System.err.println("Failed to load admin users: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public void savePosts(List<Post> posts) {
+        try {
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(POSTS_FILE), posts);
+            System.out.println("Posts saved to posts.json");
+        } catch (IOException e) {
+            System.err.println("Failed to save posts: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Post> loadPosts() {
+        try {
+            File file = new File(POSTS_FILE);
+            if (file.exists()) {
+                if (file.length() == 0) {
+                    return new ArrayList<>();
+                }
+                return objectMapper.readValue(file, new TypeReference<List<Post>>() {
+                });
+            } else {
+                return new ArrayList<>();
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to load posts: " + e.getMessage());
             return new ArrayList<>();
         }
     }
